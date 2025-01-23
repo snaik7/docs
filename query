@@ -5,3 +5,10 @@ index=mulesoft message.applicationName IN (alogent-check-eapi) message.environme
 | spath output=errorCodeHTTP path=message.content.httpStatus
 | eval errorCount=coalesce(errorCodeValue,errorCodeGeneric,errorCodeDBIQ,errorCodeHTTP)
 | timechart span=1m count as errorCount by combinedResourceName
+
+
+index=mulesoft message.applicationName IN (alogent-check-eapi) message.environment=dev message.priority ="ERROR"
+| fields + message.message message.environment _time
+| rex field=message.message "^End\s(?<httpMethod>[A-Z]+):(?<resourceName>[^\s]+).*httpStatus:\s(?<httpStatus>\d+)"
+| stats count by message.message | sort -count
+| table message.message, count
