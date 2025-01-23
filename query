@@ -1,0 +1,7 @@
+index=mulesoft message.applicationName IN (alogent-check-eapi) message.environment=dev message.priority ="ERROR"
+| spath output=errorCodeValue path=message.content.exception.errorCode
+| spath output=errorCodeGeneric path=message.content.exception.error.errorCode
+| spath output=errorCodeDBIQ path=message.content.exception.StatusCode
+| spath output=errorCodeHTTP path=message.content.httpStatus
+| eval errorCount=coalesce(errorCodeValue,errorCodeGeneric,errorCodeDBIQ,errorCodeHTTP)
+| timechart span=1m count as errorCount by combinedResourceName
