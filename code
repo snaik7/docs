@@ -1,0 +1,21 @@
+Two Active Connections 
+
+DB - AS400 Schema - ABOLIB
+DB - AS400ATM Schema - ABOSERVICE
+
+SP - MOBDUPCHK
+<DuplicateDepositRequest>
+    <transactionId>123456</transactionId>
+    <outOfAccount>987654321</outOfAccount>
+    <routingNumber>021000021</routingNumber>
+    <checkNumber>123456789</checkNumber>
+    <depositAmount>250.50</depositAmount>
+</DuplicateDepositRequest>
+
+SP - MOBMEMOPST
+<MemoPostDepositRequest>
+    <transactionId>123456</transactionId>
+    <intoAccount>987654321</intoAccount>
+    <intoAcctType>Savings</intoAcctType>
+    <depositAmount>500.75</depositAmount>
+</MemoPostDepositRequest>
