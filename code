@@ -19,3 +19,11 @@ SP - MOBMEMOPST
     <intoAcctType>Savings</intoAcctType>
     <depositAmount>500.75</depositAmount>
 </MemoPostDepositRequest>
+
+Remote Deposit
+
+Check daily/monthly deposit limits
+SP - MOBVELO
+Submits Deposit – Calls Allogent Deposit API
+
+
