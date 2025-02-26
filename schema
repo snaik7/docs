@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "deposit",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "SingleDeposit": {
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "object",
+          "properties": {
+            "major": {
+              "type": "string",
+              "example": "1"
+            },
+            "minor": {
+              "type": "string",
+              "example": "0"
+            }
+          }
+        },
+        "uiCulture": {
+          "type": "string",
+          "example": "en-US"
+        },
+        "authorizationProvider": {
+          "type": "string"
+        },
+        "declaredCurrencyCode": {
+          "type": "string"
+        },
+        "reviewRules": {
+          "type": "object",
+          "properties": {
+            "fiReviewRulesName": {
+              "type": "string"
+            },
+            "corpReviewRulesName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "fiReviewRulesName",
+            "corpReviewRulesName"
+          ]
+        },
+        "singleItemDeposit": {
+          "type": "object",
+          "properties": {
+            "depositorId": {
+              "type": "string",
+              "example": "12345"
+            },
+            "masterUserId": {
+              "type": "string",
+              "example": "12345"
+            },
+            "depositAccount": {
+              "type": "object",
+              "properties": {
+                "rt": {
+                  "type": "string",
+                  "example": "150"
+                },
+                "accountNumber": {
+                  "type": "string",
+                  "example": "1234567890"
+                },
+                "transactionCode": {
+                  "type": "string",
+                  "example": "215"
+                }
+              },
+              "required": [
+                "accountNumber",
+                "transactionCode"
+              ]
+            },
+            "sourceDevice": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "id"
+              ]
+            },
+            "memo": {
+              "type": "string"
+            },
+            "marketSegment": {
+              "type": "string"
+            },
+            "productType": {
+              "type": "string"
+            },
+            "linkReference": {
+              "type": "string"
+            },
+            "cheque": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "example": "215.00"
+                },
+                "imageFront": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "TIFF"
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "SUkqANYjAAAmoFQGqQ..."
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "image"
+                  ]
+                },
+                "imageRear": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "TIFF"
+                    },
+                    "image": {
+                      "type": "string",
+                      "example": "SUkqANYjAAAmoFQGqQ..."
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "image"
+                  ]
+                }
+              },
+              "required": [
+                "amount",
+                "imageFront",
+                "imageRear"
+              ]
+            },
+            "geolocation": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "depositorId",
+            "depositAccount",
+            "sourceDevice",
+            "cheque"
+          ]
+        },
+        "returnCodelineDetails": {
+          "type": "string"
+        },
+        "entitlements": {
+          "type": "object",
+          "properties": {
+            "corporate": {
+              "type": "string"
+            },
+            "financialInstitution": {
+              "type": "string"
+            },
+            "reviewRules": {
+              "type": "object",
+              "properties": {
+                "byRef": {
+                  "type": "object",
+                  "properties": {
+                    "corpReviewRulesName": {
+                      "type": "string"
+                    },
+                    "fiReviewRulesName": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "corpReviewRulesName",
+                    "fiReviewRulesName"
+                  ]
+                },
+                "byValue": {
+                  "type": "object",
+                  "properties": {
+                    "corpReviewRules": {
+                      "schema": {
+                        "$ref": "/schemas/review-rule.json"
+                      }
+
+                      
+                    },
+                    "fiReviewRules": {
+                      "schema": {
+                        "$ref": "/schemas/review-rule.json"
+                      }
+                    }
+                  },
+                  "required": [
+                    "corpReviewRules",
+                    "fiReviewRules"
+                  ]
+                }
+              },
+              "required": [
+                "byRef",
+                "byValue"
+              ]
+            },
+            "accounts": {
+              "type": "object",
+              "properties": {
+                "displayLimitsAndTotals": {
+                  "type": "string"
+                },
+                "account": {
+                  "type": "object",
+                  "properties": {
+                    "tc": {
+                      "type": "string"
+                    },
+                    "rt": {
+                      "type": "string"
+                    },
+                    "number": {
+                      "type": "string"
+                    },
+                    "siteID": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "defaultDepositType": {
+                      "type": "string"
+                    },
+                    "accountInformation": {
+                      "type": "string"
+                    },
+                    "virtualEndorsementConfig": {
+                      "type": "object",
+                      "properties": {
+                        "virtualEndorsementItem": {
+                          "type": "object",
+                          "properties": {
+                            "front": {
+                              "type": "object",
+                              "properties": {
+                                "virtualEndorsementInfo": {
+                                  "schema": {
+                                    "$ref": "/schemas/virtual-endorsement-info.json"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "virtualEndorsementInfo"
+                              ]
+                            },
+                            "rear": {
+                              "type": "object",
+                              "properties": {
+                                "virtualEndorsementInfo": {
+                                  "schema": {
+                                    "$ref": "/schemas/virtual-endorsement-info.json"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "virtualEndorsementInfo"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "front",
+                            "rear"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "virtualEndorsementItem"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "tc",
+                    "rt",
+                    "number",
+                    "siteID",
+                    "description",
+                    "defaultDepositType",
+                    "accountInformation",
+                    "virtualEndorsementConfig"
+                  ]
+                }
+              },
+              "required": [
+                "displayLimitsAndTotals",
+                "account"
+              ]
+            },
+            "geolocationOption": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "corporate",
+            "financialInstitution",
+            "reviewRules",
+            "accounts",
+            "geolocationOption"
+          ]
+        },
+        "putOnHold": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "singleItemDeposit"
+      ]
+    }
+  }
+}
