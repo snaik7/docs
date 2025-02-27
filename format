@@ -1,0 +1,15 @@
+"declaredCurrencyCode": {
+  "type": "string",
+  "pattern": "^[A-Z]{3}$",
+  "example": "USD",
+  "description": "Three-letter ISO 4217 currency code (e.g., USD, EUR, GBP)."
+}
+
+
+
+"amount": {
+  "type": "string",
+  "pattern": "^\\d+(\\.\\d{2})?$",
+  "example": "1234.56",
+  "description": "Currency amount in numeric format, always with two decimal places."
+}
