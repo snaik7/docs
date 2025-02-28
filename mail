@@ -1,0 +1,5 @@
+Hi Jose,
+Hari has requested us to validate our remote deposit capture (RDC) URLs with the Candescent Team. Here is our url mapping for RDC.
+Candescent URLMethodArvest URLSample URL/v6/depositPOST<<arvesthost>>/<<env>>/d3-transactions/v1/checks/deposits/remotehttps://api-test.arvest.com/test/d3-transactions/v1/checks/deposits/remote
+Please let me know if our URLs are consistent as per our agreed standards. 
+Thank you,Santosh
