@@ -1,1 +1,5 @@
-We would like to verify the URL structure of arvest endpoint can be mapped through the proxy of Candescent for respective endpoint of Candescent. 
+us to verify whether the URL structure of the Arvest endpoint can be correctly mapped through Candescent’s proxy to the respective Candescent endpoint. Below is our RDC URL mapping:
+
+Candescent URL	Method	Arvest URL	Sample URL
+/v6/deposit	POST	<<arvesthost>>/<<env>>/d3-transactions/v1/checks/deposits/remote	https://api-test.arvest.com/test/d3-transactions/v1/checks/deposits/remote
+Could you please confirm if our URLs align with the agreed standards and can be successfully mapped?
