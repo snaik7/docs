@@ -13,3 +13,32 @@
   "example": "1234.56",
   "description": "Currency amount in numeric format, always with two decimal places."
 }
+
+
+Deposit Submission Process
+Validate Request:
+
+The function checks if the RemoteDepositRequest is valid and extracts relevant details such as:
+extUserId (external user ID)
+frontImage and backImage (check images)
+accountNumber
+amountValue
+deviceId
+Perform Velocity Check (MOBVELO Stored Procedure)
+
+Calls the Allogent velocity check API (MOBVELO) to determine if the user has exceeded their daily or monthly deposit limits.
+If the check fails, the function returns an appropriate error.
+Prepare Deposit Request
+
+The function constructs an Deposit_Submit_Request object with:
+DepositorId (external user ID)
+MasterUserId (transaction ID)
+DepositAccount (account details)
+Cheque (check details and images)
+Call Allogent Deposit_Submit API
+
+The function makes a WCF service call to MobilePaymentWebServiceClient.Deposit_Submit with the structured deposit request.
+Handle Response from Allogent
+
+If the deposit is successful, the API returns a TransactionId (confirmation number).
+If the deposit fails, the function returns an appropriate error based on the API response.
