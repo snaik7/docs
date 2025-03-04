@@ -42,3 +42,9 @@ Handle Response from Allogent
 
 If the deposit is successful, the API returns a TransactionId (confirmation number).
 If the deposit fails, the function returns an appropriate error based on the API response.
+
+
+ "INSERT INTO MOB_RDC_TRAN (USER_ID, ACCT, ACCT_TYP, AMT, DUID, Monitise, ArvGo)" &
+                                                                                "VALUES (?, ?, ?, ?, ?, ?, ?); " &
+                                                                                "SELECT @@IDENTITY",
+                                                                                {userId, account, accountType.ToString, amount, duId, Monitise, arvGo})
