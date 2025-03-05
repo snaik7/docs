@@ -43,6 +43,10 @@ Handle Response from Allogent
 If the deposit is successful, the API returns a TransactionId (confirmation number).
 If the deposit fails, the function returns an appropriate error based on the API response.
 
+<add name="WCFLOGDB"  
+       providerName="System.Data.OleDb"
+       connectionString="Provider=SQLOLEDB;Data Source=wcflogdb-tst;Initial Catalog=WCF_LOGDB_STG;Integrated Security=SSPI"/>
+  
 
  "INSERT INTO MOB_RDC_TRAN (USER_ID, ACCT, ACCT_TYP, AMT, DUID, Monitise, ArvGo)" &
                                                                                 "VALUES (?, ?, ?, ?, ?, ?, ?); " &
