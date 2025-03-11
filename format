@@ -52,3 +52,32 @@ If the deposit fails, the function returns an appropriate error based on the API
                                                                                 "VALUES (?, ?, ?, ?, ?, ?, ?); " &
                                                                                 "SELECT @@IDENTITY",
                                                                                 {userId, account, accountType.ToString, amount, duId, Monitise, arvGo})
+
+
+CREATE TABLE WCF_LOGDB.dbo.MOB_RDC_TRAN (
+	MOB_RDC_TRAN_I bigint IDENTITY(1,1) NOT NULL,
+	LOG_D datetime NOT NULL,
+	USER_ID varchar(8) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	ACCT bigint NOT NULL,
+	ACCT_TYP char(3) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	AMT money NOT NULL,
+	ACCEPTED bit NULL,
+	DUID varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+	Monitise int NULL,
+	ArvGo int NULL,
+	CONSTRAINT PK_MOB_RDC_TRAN PRIMARY KEY (MOB_RDC_TRAN_I)
+);
+
+
+CREATE TABLE WCF_LOGDB.dbo.MOB_RDC_LOG (
+	MOB_RDC_LOG_I bigint IDENTITY(1,1) NOT NULL,
+	LOG_D datetime NOT NULL,
+	HOST_N varchar(32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	MOB_RDC_ACT_I tinyint NOT NULL,
+	MOB_RDC_TRAN_I bigint NOT NULL,
+	MOB_RDC_EVNT_I tinyint NOT NULL,
+	MSG text COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	Monitise int NULL,
+	ArvGo int NULL,
+	CONSTRAINT PK_MOB_RDC_LOG PRIMARY KEY (MOB_RDC_LOG_I)
+);
