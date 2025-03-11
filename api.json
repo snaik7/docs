@@ -1,0 +1,222 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Transactions Audit & Log API",
+    "description": "API for creating audit and log entries in the WCF_LOGDB database.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/transactions/audit": {
+      "post": {
+        "summary": "Create a transaction audit entry",
+        "description": "Inserts a new transaction record into the MOB_RDC_TRAN table.",
+        "operationId": "createTransactionAudit",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionAuditRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Transaction created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionAuditResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/transactions/log": {
+      "post": {
+        "summary": "Create a transaction log entry",
+        "description": "Inserts a new log entry into the MOB_RDC_LOG table.",
+        "operationId": "createTransactionLog",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionLogRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Log entry created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionLogResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request data"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TransactionAuditRequest": {
+        "type": "object",
+        "required": [
+          "logDate",
+          "userId",
+          "account",
+          "accountType",
+          "amount"
+        ],
+        "properties": {
+          "logDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-02-24T15:30:00Z"
+          },
+          "userId": {
+            "type": "string",
+            "maxLength": 8,
+            "example": "USR12345"
+          },
+          "account": {
+            "type": "integer",
+            "format": "int64",
+            "example": 123456789
+          },
+          "accountType": {
+            "type": "string",
+            "maxLength": 3,
+            "example": "CHK"
+          },
+          "amount": {
+            "type": "number",
+            "format": "float",
+            "example": 150.75
+          },
+          "accepted": {
+            "type": "boolean",
+            "nullable": true,
+            "example": true
+          },
+          "deviceId": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 100,
+            "example": "device-98765"
+          },
+          "monitise": {
+            "type": "integer",
+            "nullable": true,
+            "example": 1
+          },
+          "arvGo": {
+            "type": "integer",
+            "nullable": true,
+            "example": 0
+          }
+        }
+      },
+      "TransactionAuditResponse": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1001
+          },
+          "message": {
+            "type": "string",
+            "example": "Transaction audit record created successfully."
+          }
+        }
+      },
+      "TransactionLogRequest": {
+        "type": "object",
+        "required": [
+          "logDate",
+          "hostName",
+          "transactionActionId",
+          "transactionId",
+          "eventId",
+          "message"
+        ],
+        "properties": {
+          "logDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-02-24T16:00:00Z"
+          },
+          "hostName": {
+            "type": "string",
+            "maxLength": 32,
+            "example": "server01"
+          },
+          "transactionActionId": {
+            "type": "integer",
+            "format": "int32",
+            "example": 2
+          },
+          "transactionId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1001
+          },
+          "eventId": {
+            "type": "integer",
+            "format": "int32",
+            "example": 5
+          },
+          "message": {
+            "type": "string",
+            "example": "Transaction completed successfully."
+          },
+          "monitise": {
+            "type": "integer",
+            "nullable": true,
+            "example": 1
+          },
+          "arvGo": {
+            "type": "integer",
+            "nullable": true,
+            "example": 0
+          }
+        }
+      },
+      "TransactionLogResponse": {
+        "type": "object",
+        "properties": {
+          "logId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 5001
+          },
+          "message": {
+            "type": "string",
+            "example": "Transaction log entry created successfully."
+          }
+        }
+      }
+    }
+  }
+}
