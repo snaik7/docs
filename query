@@ -12,3 +12,8 @@ index=mulesoft message.applicationName IN (alogent-check-eapi) message.environme
 | rex field=message.message "^End\s(?<httpMethod>[A-Z]+):(?<resourceName>[^\s]+).*httpStatus:\s(?<httpStatus>\d+)"
 | stats count by message.message | sort -count
 | table message.message, count
+
+
+When a request is retried due to a timeout or network failure, should the same idempotency key be used, or does your system require a new one?
+If a retry is sent with the same idempotency key, does your system return the previous response, or is the request reprocessed?
+How long does your system retain idempotency keys to prevent duplicate processing?
